@@ -2,7 +2,7 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Enter your security code" %}
+{% set contentTitle = "Successful journey" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
@@ -23,24 +23,10 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
-
-      <form action="/{{ PROTOTYPEURL }}/success" method="get">
-
-        {{ input({
-          "label": {
-            "text": contentTitle,
-            "isPageHeading": true,
-            "classes": "nhsuk-label--l"
-          },
-          "id": "inputcode",
-          "type": "number",
-          "name": "code",
-          "classes": "nhsuk-input--width-10"
-        }) }}
-
-        <input type="submit" class="nhsuk-button identity-button" value="Continue">
-        </input>
-      </form>
+      <h1>{{ contentTitle }}</h1>
+      <p>
+        <a href="/">Back to home</a>
+      </p>
     </div>
   </div>
 {% endblock %}
