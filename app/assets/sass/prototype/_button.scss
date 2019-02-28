@@ -1,0 +1,16 @@
+.identity-button {
+
+  width: 100%;
+  background-color: darken($color_nhsuk-blue, 5%);
+
+  &:hover, :focus {
+    background-color: darken($color_nhsuk-blue, 15%);
+  }
+
+
+}
+
+.id-button--width-20 {
+
+  max-width: 41ex;
+}
