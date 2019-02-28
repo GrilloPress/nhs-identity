@@ -2,8 +2,10 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set title = "Enter your email" %}
 {% set serviceName = "NHS identity" %}
+{% set contentTitle = "Enter your email" %}
+{% set title = contentTitle + " - " + serviceName %}
+
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
