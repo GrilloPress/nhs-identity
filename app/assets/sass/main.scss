@@ -12,5 +12,18 @@
 // Add your custom CSS/Sass styles below...
 ///////////////////////////////////////////
 
+@import 'prototype/grid';
 @import 'prototype/navbar';
+@import 'prototype/footer';
 @import 'prototype/button';
+
+html {
+
+  background-color: inherit;
+}
+
+.identity-list--unstyled {
+
+  list-style-type: none;
+  padding-left: 0;
+}

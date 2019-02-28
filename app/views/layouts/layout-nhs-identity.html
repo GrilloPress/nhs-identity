@@ -15,7 +15,7 @@
 <!-- Header goes inside this block -->
 {% block header %}
 <header class="nhsuk-header identity-header" role="banner">
-  <div class="nhsuk-width-container nhsuk-header__container">
+  <div class="nhsuk-width-container nhsuk-header__container {% if width %} identity-width-container{% endif %}">
     <div class="nhsuk-header__logo">
       <a href="/" class="nhsuk-header__link" aria-label="NHS homepage">
                     <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" width="116.97" height="90.74" viewBox="0 0 116.97 90.74"><defs><style>.a{fill:#231f20;}.b{fill:#005eb8;}</style></defs><title>NHSD-Logo</title><path class="a" d="M936,616.49h6.35c7.11,0,13.39,2.38,13.39,11.54s-6.28,11.54-13.39,11.54H936V616.49Zm4.65,19.45h2.59a7.91,7.91,0,0,0,0-15.81h-2.59v15.81ZM959,615.2h4.45v4.23H959V615.2Zm0,7.34h4.45v17H959v-17Zm24.19,0v15.38c0,4.63-1.86,9-9,9a15.13,15.13,0,0,1-5.92-1.16L968.6,642a12.89,12.89,0,0,0,5,1.49c4.92,0,5.15-3.67,5.15-6.62h-0.07a6.11,6.11,0,0,1-5.32,2.71c-5.05,0-7-4-7-8.6,0-4.1,2.13-8.83,7.24-8.83a5.69,5.69,0,0,1,5.25,2.71h0.07v-2.32h4.25Zm-4.45,8.34c0-2.91-1.13-5.29-3.72-5.29-3,0-4,2.78-4,5.39,0,2.32,1.23,5.16,3.79,5.16,2.79,0,3.92-2.41,3.92-5.26m8.48-15.68h4.45v4.23h-4.45V615.2Zm0,7.34h4.45v17h-4.45v-17Zm10.6,11.91c0,3.37,1.93,5.52,5.42,5.52a11.73,11.73,0,0,0,3.29-.4l-0.13-3.51a4,4,0,0,1-2,.46c-1.7,0-2.09-1.36-2.09-2.81v-7.94h4v-3.24h-4v-4.83l-4.45,1.42v3.41h-3.29v3.24h3.29v8.67Zm12.9-11a15.36,15.36,0,0,1,5.95-1.29c5.22,0,7.38,2.15,7.38,7.18v2.18c0,1.72,0,3,.07,4.27s0.1,2.48.2,3.8h-3.92a20.82,20.82,0,0,1-.2-2.55h-0.07a6.12,6.12,0,0,1-5.28,2.94c-3,0-6-1.82-6-5.06a5,5,0,0,1,2.92-4.86,13.63,13.63,0,0,1,5.75-1H1020c0-2.75-1.23-3.67-3.86-3.67a9,9,0,0,0-5.28,1.85Zm5.22,13.3a3.79,3.79,0,0,0,3.12-1.52,5.63,5.63,0,0,0,.93-3.51h-1.93c-2,0-5,.33-5,2.94,0,1.45,1.23,2.08,2.82,2.08m11.93,2.84h4.45V614.77h-4.45v24.81Z" transform="translate(-935.97 -556.18)"/><path class="b" d="M1048.56,561.74l-2.46,7.51a19.35,19.35,0,0,0-8.4-1.73c-4,0-7.32.59-7.32,3.62,0,5.35,14.79,3.35,14.79,14.81,0,10.43-9.77,13.14-18.62,13.14a42.9,42.9,0,0,1-11.79-2l2.4-7.68c2,1.3,6.06,2.17,9.39,2.17,3.17,0,8.13-.6,8.13-4.49,0-6.06-14.8-3.78-14.8-14.43,0-9.74,8.63-12.65,17-12.65,4.7,0,9.12.49,11.68,1.68m-29.32-1-7.92,37.74h-10.2l3.39-16.16H992.43l-3.38,16.16H978.84l7.92-37.74H997l-3,14.44H1006l3-14.44h10.2Zm-36.24,0-8.08,37.74H962.25l-8-26.11h-0.11l-5.3,26.11h-9.61l8.14-37.74h12.71l7.81,26.17H968l5.35-26.17H983Zm69.94-4.52H936v46.88h117V556.18Z" transform="translate(-935.97 -556.18)"/></svg>
@@ -34,16 +34,17 @@
 <!-- Footer goes inside this block -->
 
 {% block footer %}
-  {{ footer({
-    "links": [
-      {
-        "URL": "#",
-        "label": "Contact us"
-      },
-      {
-        "URL": "#",
-        "label": "Our policies"
-      }
-    ]
-  })}}
+<footer role="contentinfo">
+  <div class="nhsuk-footer identity-footer" id="nhsuk-footer">
+    <div class="nhsuk-width-container {% if width %} identity-width-container{% endif %}">
+      <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+      <ul class="nhsuk-footer__list">
+        <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="https://www.nhs.uk/about-us">About us</a></li>
+        <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="https://www.nhs.uk/contact-us/">Contact us</a></li>
+        <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="https://www.nhs.uk/our-policies/">Our policies</a></li>
+      </ul>
+      <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
+    </div>
+  </div>
+</footer>
 {% endblock %}
