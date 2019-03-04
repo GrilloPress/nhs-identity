@@ -3,7 +3,7 @@ ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
 {% set serviceName = "NHS identity" %}
-{% set contentTitle = "Enter your email" %}
+{% set contentTitle = "Add a role to your existing NHS identity" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set nhsIdentity = "true" %}
 
@@ -31,22 +31,12 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
       <h2>Prototypes</h2>
       <ul class="identity-list--unstyled">
         <li>
-          <a href="/use-a-service/v1/enter-your-email">Returning user</a>
+          <a href="/add-a-role/v1/enter-your-email">Start</a>
         </li>
-        <li>
-          <a href="/register-account/v1/enter-your-email">Register user</a>
-        </li>
-        <li>
-          <a href="/register-account/v1/details/continue">Post email register user</a>
-        </li>
-        <li>
-          <a href="/add-a-role/v1/enter-your-email">Add a role</a>
-        </li>
-
-
-
-
       </ul>
+
+      <h2>Alternatives</h2>
+      <p>If the user already has more than one organisation, the first screen they see will be to confirm the organisation they wish to assign the role to: <a href="/add-a-role/v1/alts/more-than-one-org">choose which organisation you want to add a role to</a> </p>
 
       <!-- End of content -->
 

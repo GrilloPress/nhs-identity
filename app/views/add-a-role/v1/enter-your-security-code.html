@@ -2,12 +2,11 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Log in with your email" %}
+{% set contentTitle = "Enter your security code" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
-{# set width = "800" #}
-{% set PROTOTYPEURL = "use-a-service/v1" %}
+{% set PROTOTYPEURL = "add-a-role/v1" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -25,7 +24,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
 
-      <form action="/{{ PROTOTYPEURL }}/enter-your-security-code" method="get">
+      <form action="/{{ PROTOTYPEURL }}/need-permission" method="get">
 
         {{ input({
           "label": {
@@ -33,19 +32,18 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
             "isPageHeading": true,
             "classes": "nhsuk-label--l"
           },
-          "id": "inputemail",
-          "name": "email",
-          "type": "email",
-          "classes": "nhsuk-input--width-20"
+          "hint": {
+            "text": "We've sent your code to your email"
+          },
+          "id": "inputcode",
+          "type": "number",
+          "name": "code",
+          "classes": "nhsuk-input--width-10"
         }) }}
 
         <input type="submit" class="nhsuk-button identity-button" value="Continue">
         </input>
       </form>
-
-      <p>
-        If you do not have an NHS identity, <a href="/register-account/v1/get-an-nhs-identity">you can register for one</a>
-      </p>
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,100 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+{% set contentTitle = "Check your details " %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "add-a-role/v1" %}
+{% set forwardService = "<service name>" %}
+
+  {% if data['location-picker'] %}
+    {% set role = data['location-picker'] %}
+  {% else %}
+    {% set role = "Special role" %}
+  {% endif %}
+
+  {% if data['email'] %}
+    {% set email = data['email'] %}
+  {% else %}
+    {% set email = "test@example.com" %}
+  {% endif %}
+
+  {% if data['input-autocomplete'] %}
+    {% set org = data['input-autocomplete'] %}
+  {% else %}
+    {% set org = "Sheffield Teaching Hospitals NHS Foundation Trust" %}
+  {% endif %}
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
+
+      <p>To use {{ forwardService }}, you're asking for the {{ role }} role to be added to your NHS identity.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              text: org
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "organisation"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Role"
+            },
+            value: {
+              html: role
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "role"
+                }
+              ]
+            }
+          }
+        ]
+        }) }}
+
+      <h2 class="nhsuk-heading-m">Submit your details</h2>
+      <p>By submitting your details you are confirming that, to the best of your knowledge, the details you are providing are correct</p>
+
+      <form action="/{{ PROTOTYPEURL }}/confirm" method="get">
+        <input type="submit" class="nhsuk-button identity-button" value="Submit details">
+        </input>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

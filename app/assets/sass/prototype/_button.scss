@@ -2,9 +2,11 @@
 
   // width: 100%;
   background-color: darken($color_nhsuk-blue, 5%);
+  box-shadow: 0 4px 0 darken($color_nhsuk-blue, 25%);
 
   &:hover {
     background-color: darken($color_nhsuk-blue, 15%);
+    box-shadow: 0 4px 0 darken($color_nhsuk-blue, 25%);
   }
 
   &:focus {

@@ -2,11 +2,13 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Enter your security code" %}
+{% set contentTitle = "Enter your name" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
+{# set width = "800" #}
 {% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -24,23 +26,43 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="#" method="get">
+      <form action="/{{ PROTOTYPEURL }}/details/your-dob" method="get">
+
+        {% call fieldset({
+          "legend": {
+            "text": contentTitle,
+            "classes": "nhsuk-fieldset__legend--l",
+            "isPageHeading": true
+          }
+        }) %}
 
         {{ input({
           "label": {
-            "text": contentTitle,
-            "isPageHeading": true,
-            "classes": "nhsuk-label--l"
+            "text": "First names",
+            "isPageHeading": false
           },
-          "id": "inputcode",
-          "type": "number",
-          "name": "code",
-          "classes": "nhsuk-input--width-10"
+          "id": "inputnhsnumber",
+          "name": "nhsnumber",
+          "classes": "nhsuk-input--width-20"
         }) }}
+
+        {{ input({
+          "label": {
+            "text": "Last name",
+            "isPageHeading": false
+          },
+          "id": "inputnhsnumber",
+          "name": "nhsnumber",
+          "classes": "nhsuk-input--width-20"
+        }) }}
+        {% endcall %}
 
         <input type="submit" class="nhsuk-button identity-button" value="Continue">
         </input>
       </form>
+
+
+
     </div>
   </div>
 {% endblock %}

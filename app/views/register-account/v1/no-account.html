@@ -2,11 +2,13 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Enter your security code" %}
+{% set contentTitle = "Sorry, we do not have an NHS identity for you" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
+{# set width = "800" #}
 {% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -24,23 +26,20 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="#" method="get">
+      <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
+      <p>To use {{ forwardService }}, you'll need an NHS identity.</p>
 
-        {{ input({
-          "label": {
-            "text": contentTitle,
-            "isPageHeading": true,
-            "classes": "nhsuk-label--l"
-          },
-          "id": "inputcode",
-          "type": "number",
-          "name": "code",
-          "classes": "nhsuk-input--width-10"
-        }) }}
-
-        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+      <form action="/{{ PROTOTYPEURL }}/get-an-nhs-identity-with-email" method="get">
+        <input type="submit" class="nhsuk-button identity-button" value="Register an account">
         </input>
       </form>
+
+      {{ backLink({
+        "href": "/" + PROTOTYPEURL + "/enter-your-email",
+        "text": "Go back to the previous page"
+      }) }}
+
+
     </div>
   </div>
 {% endblock %}

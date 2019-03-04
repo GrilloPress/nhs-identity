@@ -1,0 +1,447 @@
+{% set contentTitle = "Choose the role you want to add" %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "add-a-role/v1" %}
+{% set forwardService = "<service name>" %}
+{% block pageScripts %}
+  <script type="text/javascript" src="/js/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript" src="/js/autocomplete-roles.js"></script>
+{% endblock %}
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="/{{ PROTOTYPEURL }}/confirm-role" method="get">
+
+        {{ label({
+          "text": contentTitle,
+          "isPageHeading": true,
+          "classes": "nhsuk-label--l",
+          "for": "location-picker",
+          "id": "location-picker"
+        }) }}
+        {{ hint({
+          "text": "Search or browse roles"
+        }) }}
+
+        <select name="location-picker" id="location-picker">
+          <option value="">Select a role</option>
+          <option id='Medical Director (R0010)'>Medical Director (R0010)</option>
+          <option id='Clinical Director - Medical (R0020)'>Clinical Director - Medical (R0020)</option>
+          <option id='Director of Public Health (R0210)'>Director of Public Health (R0210)</option>
+          <option id='Professor (R0030)'>Professor (R0030)</option>
+          <option id='Senior Lecturer (R0040)'>Senior Lecturer (R0040)</option>
+          <option id='Consultant (R0050)'>Consultant (R0050)</option>
+          <option id='Special Salary Scale in Public Health Medicine (R0060)'>Special Salary Scale in Public Health Medicine (R0060)</option>
+          <option id='Associate Specialist (R0070)'>Associate Specialist (R0070)</option>
+          <option id='Staff Grade (R0080)'>Staff Grade (R0080)</option>
+          <option id='Hospital Practitioner (R0090)'>Hospital Practitioner (R0090)</option>
+          <option id='Clinical Assistant (R0100)'>Clinical Assistant (R0100)</option>
+          <option id='Specialist Registrar (R0110)'>Specialist Registrar (R0110)</option>
+          <option id='Senior Registrar (Closed) (R0120)'>Senior Registrar (Closed) (R0120)</option>
+          <option id='Registrar (Closed) (R0130)'>Registrar (Closed) (R0130)</option>
+          <option id='Senior House Officer (R0140)'>Senior House Officer (R0140)</option>
+          <option id='House Officer - Pre Registration (R0150)'>House Officer - Pre Registration (R0150)</option>
+          <option id='House Officer - Post Registration (R0160)'>House Officer - Post Registration (R0160)</option>
+          <option id='Trust Grade Doctor - House Officer level (R0170)'>Trust Grade Doctor - House Officer level (R0170)</option>
+          <option id='Trust Grade Doctor - SHO level (R0180)'>Trust Grade Doctor - SHO level (R0180)</option>
+          <option id='Trust Grade Doctor - Specialist Registrar level (R0190)'>Trust Grade Doctor - Specialist Registrar level (R0190)</option>
+          <option id='Trust Grade Doctor - Career Grade level (R0200)'>Trust Grade Doctor - Career Grade level (R0200)</option>
+          <option id='General Medical Practitioner  (R0260)'>General Medical Practitioner (R0260)</option>
+          <option id='Salaried General Practitioner (R0270)'>Salaried General Practitioner (R0270)</option>
+          <option id='Psychiatrist (R1981)'>Psychiatrist (R1981)</option>
+          <option id='Health Records Administrator (R1984)'>Health Records Administrator (R1984)</option>
+          <option id='GP Registrar (R6200)'>GP Registrar (R6200)</option>
+          <option id='Sessional GP (R6300)'>Sessional GP (R6300)</option>
+          <option id='ODP (R7140)'>ODP (R7140)</option>
+          <option id='SODP (R7150)'>SODP (R7150)</option>
+          <option id='A&E Staff Nurse (Temporary) London Cluster Only (R9100)'>A&E Staff Nurse (Temporary) London Cluster Only (R9100)</option>
+          <option id='A&E Manager (Temporary) London Cluster Only (R9101)'>A&E Manager (Temporary) London Cluster Only (R9101)</option>
+          <option id='A&E Doctor (Temporary) London Cluster only (R9102)'>A&E Doctor (Temporary) London Cluster only (R9102)</option>
+          <option id='A&E Student (Temporary) London Cluster Only (R9103)'>A&E Student (Temporary) London Cluster Only (R9103)</option>
+          <option id='A&E Clerk (Temporary) London Cluster Only (R9104)'>A&E Clerk (Temporary) London Cluster Only (R9104)</option>
+          <option id='Assistant Clinical Medical Officer (R0215)'>Assistant Clinical Medical Officer (R0215)</option>
+          <option id='Clinical Medical Officer (R0220)'>Clinical Medical Officer (R0220)</option>
+          <option id='Senior Clinical Medical Officer (R0230)'>Senior Clinical Medical Officer (R0230)</option>
+          <option id='Other Community Health Service (R0240)'>Other Community Health Service (R0240)</option>
+          <option id='Other Community Health Service - Social Care Worker (R0243)'>Other Community Health Service - Social Care Worker (R0243)</option>
+          <option id='Other Community Health Service - Admin Clerk (R0247)'>Other Community Health Service - Admin Clerk (R0247)</option>
+          <option id='Dental Surgeon acting as Hospital Consultant (R0055)'>Dental Surgeon acting as Hospital Consultant (R0055)</option>
+          <option id='General Dental Practitioner (R0250)'>General Dental Practitioner (R0250)</option>
+          <option id='Regional Dental Officer (R0280)'>Regional Dental Officer (R0280)</option>
+          <option id='Dental Clinical Director - Dental (R0290)'>Dental Clinical Director - Dental (R0290)</option>
+          <option id='Dental Assistant Clinical Director (R0295)'>Dental Assistant Clinical Director (R0295)</option>
+          <option id='Dental Officer (R0300)'>Dental Officer (R0300)</option>
+          <option id='Senior Dental Officer (R0310)'>Senior Dental Officer (R0310)</option>
+          <option id='Salaried Dental Practitioner (R0320)'>Salaried Dental Practitioner (R0320)</option>
+          <option id='Student Community Practitioner (R0006)'>Student Community Practitioner (R0006)</option>
+          <option id='Student Nurse - Adult Branch (R0330)'>Student Nurse - Adult Branch (R0330)</option>
+          <option id='Student Nurse - Child Branch (R0340)'>Student Nurse - Child Branch (R0340)</option>
+          <option id='Student Nurse - Mental Health Branch (R0350)'>Student Nurse - Mental Health Branch (R0350)</option>
+          <option id='Student Nurse - Learning Disabilities Branch (R0360)'>Student Nurse - Learning Disabilities Branch (R0360)</option>
+          <option id='Student Midwife (R0370)'>Student Midwife (R0370)</option>
+          <option id='Student Health Visitor (R0380)'>Student Health Visitor (R0380)</option>
+          <option id='Student District Nurse (R0390)'>Student District Nurse (R0390)</option>
+          <option id='Student School Nurse (R0400)'>Student School Nurse (R0400)</option>
+          <option id='Student Practice Nurse (R0410)'>Student Practice Nurse (R0410)</option>
+          <option id='Student Occupational Health Nurse (R0420)'>Student Occupational Health Nurse (R0420)</option>
+          <option id='Student Community Paediatric Nurse (R0430)'>Student Community Paediatric Nurse (R0430)</option>
+          <option id='Student Community Mental Health Nurse (R0440)'>Student Community Mental Health Nurse (R0440)</option>
+          <option id='Student Community Learning Disabilities Nurse (R0450)'>Student Community Learning Disabilities Nurse (R0450)</option>
+          <option id='Student Chiropodist (R0460)'>Student Chiropodist (R0460)</option>
+          <option id='Student Dietitian (R0470)'>Student Dietitian (R0470)</option>
+          <option id='Student Occupational Therapist (R0480)'>Student Occupational Therapist (R0480)</option>
+          <option id='Student Orthoptist (R0490)'>Student Orthoptist (R0490)</option>
+          <option id='Student Physiotherapist (R0500)'>Student Physiotherapist (R0500)</option>
+          <option id='Student Radiographer - Diagnostic (R0510)'>Student Radiographer - Diagnostic (R0510)</option>
+          <option id='Student Radiographer - Therapeutic (R0520)'>Student Radiographer - Therapeutic (R0520)</option>
+          <option id='Student Speech & Language Therapist (R0530)'>Student Speech & Language Therapist (R0530)</option>
+          <option id='Art, Music & Drama Student (R0540)'>Art, Music & Drama Student (R0540)</option>
+          <option id='Student Psychotherapist (R0550)'>Student Psychotherapist (R0550)</option>
+          <option id='Medical Student (R6400)'>Medical Student (R6400)</option>
+          <option id='Director of Nursing (R0560)'>Director of Nursing (R0560)</option>
+          <option id='Nurse Manager (R0580)'>Nurse Manager (R0580)</option>
+          <option id='Sister/Charge Nurse (R0610)'>Sister/Charge Nurse (R0610)</option>
+          <option id='Community Team Manager (R1976)'>Community Team Manager (R1976)</option>
+          <option id='Nurse Consultant (R0570)'>Nurse Consultant (R0570)</option>
+          <option id='Specialist Nurse Practitioner (R0600)'>Specialist Nurse Practitioner (R0600)</option>
+          <option id='Staff Nurse (R0620)'>Staff Nurse (R0620)</option>
+          <option id='Enrolled Nurse (R0630)'>Enrolled Nurse (R0630)</option>
+          <option id='Community Practitioner (R0690)'>Community Practitioner (R0690)</option>
+          <option id='Community Nurse (R0700)'>Community Nurse (R0700)</option>
+          <option id='Community Learning Disabilities Nurse (R1974)'>Community Learning Disabilities Nurse (R1974)</option>
+          <option id='Community Mental Health Nurse (R1975)'>Community Mental Health Nurse (R1975)</option>
+          <option id='Modern Matron (R0590)'>Modern Matron (R0590)</option>
+          <option id='Clinical Team Manager (R1972)'>Clinical Team Manager (R1972)</option>
+          <option id='Midwife - Consultant (R0640)'>Midwife - Consultant (R0640)</option>
+          <option id='Midwife - Specialist Practitioner (R0650)'>Midwife - Specialist Practitioner (R0650)</option>
+          <option id='Midwife - Manager (R0660)'>Midwife - Manager (R0660)</option>
+          <option id='Midwife - Sister/Charge Nurse (R0670)'>Midwife - Sister/Charge Nurse (R0670)</option>
+          <option id='Midwife (R0680)'>Midwife (R0680)</option>
+          <option id='Audiologist (R0018)'>Audiologist (R0018)</option>
+          <option id='Chiropodist/Podiatrist (R0750)'>Chiropodist/Podiatrist (R0750)</option>
+          <option id='Chiropodist/Podiatrist Consultant (R0760)'>Chiropodist/Podiatrist Consultant (R0760)</option>
+          <option id='Chiropodist/Podiatrist Manager (R0770)'>Chiropodist/Podiatrist Manager (R0770)</option>
+          <option id='Chiropodist/Podiatrist Specialist Practitioner (R0780)'>Chiropodist/Podiatrist Specialist Practitioner (R0780)</option>
+          <option id='Dietitian (R0790)'>Dietitian (R0790)</option>
+          <option id='Dietitian Consultant (R0800)'>Dietitian Consultant (R0800)</option>
+          <option id='Dietitian Manager (R0810)'>Dietitian Manager (R0810)</option>
+          <option id='Dietitian Specialist Practitioner (R0820)'>Dietitian Specialist Practitioner (R0820)</option>
+          <option id='Occupational Therapist (R0950)'>Occupational Therapist (R0950)</option>
+          <option id='Occupational Therapist Consultant (R0960)'>Occupational Therapist Consultant (R0960)</option>
+          <option id='Occupational Therapist Manager (R0970)'>Occupational Therapist Manager (R0970)</option>
+          <option id='Occupational Therapy Specialist Practitioner (R0980)'>Occupational Therapy Specialist Practitioner (R0980)</option>
+          <option id='Orthoptist (R0990)'>Orthoptist (R0990)</option>
+          <option id='Orthoptist Consultant (R1000)'>Orthoptist Consultant (R1000)</option>
+          <option id='Orthoptist Manager (R1010)'>Orthoptist Manager (R1010)</option>
+          <option id='Orthoptist Specialist Practitioner (R1020)'>Orthoptist Specialist Practitioner (R1020)</option>
+          <option id='Physiotherapist (R1110)'>Physiotherapist (R1110)</option>
+          <option id='Physiotherapist Consultant (R1120)'>Physiotherapist Consultant (R1120)</option>
+          <option id='Physiotherapist Manager (R1130)'>Physiotherapist Manager (R1130)</option>
+          <option id='Physiotherapist Specialist Practitioner (R1140)'>Physiotherapist Specialist Practitioner (R1140)</option>
+          <option id='Paramedic (R1070)'>Paramedic (R1070)</option>
+          <option id='Paramedic Consultant (R1080)'>Paramedic Consultant (R1080)</option>
+          <option id='Paramedic Manager (R1090)'>Paramedic Manager (R1090)</option>
+          <option id='Paramedic Specialist Practitioner (R1100)'>Paramedic Specialist Practitioner (R1100)</option>
+          <option id='Clinical Application Administrator (R0003)'>Clinical Application Administrator (R0003)</option>
+          <option id='Radiographer (R0012)'>Radiographer (R0012)</option>
+          <option id='Student Radiographer (R0013)'>Student Radiographer (R0013)</option>
+          <option id='Radiologist (R0014)'>Radiologist (R0014)</option>
+          <option id='PACS Administrator (R0015)'>PACS Administrator (R0015)</option>
+          <option id='Reporting Radiographer (R0016)'>Reporting Radiographer (R0016)</option>
+          <option id='Assistant Practitioner (R0017)'>Assistant Practitioner (R0017)</option>
+          <option id='Radiographer - Diagnostic (R1190)'>Radiographer - Diagnostic (R1190)</option>
+          <option id='Radiographer - Diagnostic, Consultant (R1200)'>Radiographer - Diagnostic, Consultant (R1200)</option>
+          <option id='Radiographer - Diagnostic, Manager (R1210)'>Radiographer - Diagnostic, Manager (R1210)</option>
+          <option id='Radiographer - Diagnostic, Specialist Practitioner (R1220)'>Radiographer - Diagnostic, Specialist Practitioner (R1220)</option>
+          <option id='Radiographer - Therapeutic (R1230)'>Radiographer - Therapeutic (R1230)</option>
+          <option id='Radiographer - Therapeutic, Consultant (R1240)'>Radiographer - Therapeutic, Consultant (R1240)</option>
+          <option id='Radiographer - Therapeutic, Manager (R1250)'>Radiographer - Therapeutic, Manager (R1250)</option>
+          <option id='Radiographer - Therapeutic, Specialist Practitioner (R1260)'>Radiographer - Therapeutic, Specialist Practitioner (R1260)</option>
+          <option id='Orthotist (R1030)'>Orthotist (R1030)</option>
+          <option id='Orthotist Consultant (R1040)'>Orthotist Consultant (R1040)</option>
+          <option id='Orthotist Manager (R1050)'>Orthotist Manager (R1050)</option>
+          <option id='Orthotist Specialist Practitioner (R1060)'>Orthotist Specialist Practitioner (R1060)</option>
+          <option id='Prosthetist (R1150)'>Prosthetist (R1150)</option>
+          <option id='Prosthetist Consultant (R1160)'>Prosthetist Consultant (R1160)</option>
+          <option id='Prosthetist Manager (R1170)'>Prosthetist Manager (R1170)</option>
+          <option id='Prosthetist Specialist Practitioner (R1180)'>Prosthetist Specialist Practitioner (R1180)</option>
+          <option id='Art Therapist (R0710)'>Art Therapist (R0710)</option>
+          <option id='Art Therapist Consultant (R0720)'>Art Therapist Consultant (R0720)</option>
+          <option id='Art Therapist Manager (R0730)'>Art Therapist Manager (R0730)</option>
+          <option id='Art Therapist Specialist Practitioner (R0740)'>Art Therapist Specialist Practitioner (R0740)</option>
+          <option id='Drama Therapist (R0830)'>Drama Therapist (R0830)</option>
+          <option id='Drama Therapist Consultant (R0840)'>Drama Therapist Consultant (R0840)</option>
+          <option id='Drama Therapist Manager (R0850)'>Drama Therapist Manager (R0850)</option>
+          <option id='Drama Therapist Specialist Practitioner (R0860)'>Drama Therapist Specialist Practitioner (R0860)</option>
+          <option id='Multi Therapist (R0870)'>Multi Therapist (R0870)</option>
+          <option id='Multi Therapist Consultant (R0880)'>Multi Therapist Consultant (R0880)</option>
+          <option id='Multi Therapist Manager (R0890)'>Multi Therapist Manager (R0890)</option>
+          <option id='Multi Therapist Specialist Practitioner (R0900)'>Multi Therapist Specialist Practitioner (R0900)</option>
+          <option id='Music Therapist (R0910)'>Music Therapist (R0910)</option>
+          <option id='Music Therapist Consultant (R0920)'>Music Therapist Consultant (R0920)</option>
+          <option id='Music Therapist Manager (R0930)'>Music Therapist Manager (R0930)</option>
+          <option id='Music Therapist Specialist Practitioner (R0940)'>Music Therapist Specialist Practitioner (R0940)</option>
+          <option id='Speech & Language Therapist (R0955)'>Speech & Language Therapist (R0955)</option>
+          <option id='Speech & Language Therapist Consultant (R0965)'>Speech & Language Therapist Consultant (R0965)</option>
+          <option id='Speech & Language Therapist Manager (R0975)'>Speech & Language Therapist Manager (R0975)</option>
+          <option id='Speech & Language Therapist Specialist Practitioner (R0985)'>Speech & Language Therapist Specialist Practitioner (R0985)</option>
+          <option id='Social Services Senior Management (R9500)'>Social Services Senior Management (R9500)</option>
+          <option id='Social Services Policy and Planning (R9505)'>Social Services Policy and Planning (R9505)</option>
+          <option id='Social Services Information Manager (R9510)'>Social Services Information Manager (R9510)</option>
+          <option id='Social Work Team Manager (Children) (R9515)'>Social Work Team Manager (Children) (R9515)</option>
+          <option id='Senior Social Worker (Children) (R9520)'>Senior Social Worker (Children) (R9520)</option>
+          <option id='Social Services Care Manager (Children) (R9525)'>Social Services Care Manager (Children) (R9525)</option>
+          <option id='Social Work Assistant (Children) (R9530)'>Social Work Assistant (Children) (R9530)</option>
+          <option id='Child Protection Worker (R9535)'>Child Protection Worker (R9535)</option>
+          <option id='Family Placement Worker (R9540)'>Family Placement Worker (R9540)</option>
+          <option id='Community Worker (Children) (R9545)'>Community Worker (Children) (R9545)</option>
+          <option id='Occupational Therapist (R9550)'>Occupational Therapist (R9550)</option>
+          <option id='Occupational Therapist Assistant (R9555)'>Occupational Therapist Assistant (R9555)</option>
+          <option id='Occupational Therapy Team Manager (R9560)'>Occupational Therapy Team Manager (R9560)</option>
+          <option id='Social Work Team Manager (Adults) (R9565)'>Social Work Team Manager (Adults) (R9565)</option>
+          <option id='Senior Social Worker (Adults) (R9570)'>Senior Social Worker (Adults) (R9570)</option>
+          <option id='Social Services Care Manager (Adults) (R9575)'>Social Services Care Manager (Adults) (R9575)</option>
+          <option id='Social Work Assistant (Adults) (R9580)'>Social Work Assistant (Adults) (R9580)</option>
+          <option id='Social Work Team Manager (Mental Health) (R9585)'>Social Work Team Manager (Mental Health) (R9585)</option>
+          <option id='Senior Social Worker (Mental Health) (R9590)'>Senior Social Worker (Mental Health) (R9590)</option>
+          <option id='Social Services Care Manager (Mental Health) (R9595)'>Social Services Care Manager (Mental Health) (R9595)</option>
+          <option id='Social Work Assistant (Mental Health) (R9600)'>Social Work Assistant (Mental Health) (R9600)</option>
+          <option id='Emergency Duty Social Worker (R9605)'>Emergency Duty Social Worker (R9605)</option>
+          <option id='Social Services Driver (R9615)'>Social Services Driver (R9615)</option>
+          <option id='Home Care Organiser (R9620)'>Home Care Organiser (R9620)</option>
+          <option id='Home Care Administrator (R9625)'>Home Care Administrator (R9625)</option>
+          <option id='Home Help (R9630)'>Home Help (R9630)</option>
+          <option id='Warden (R9635)'>Warden (R9635)</option>
+          <option id='Meals on Wheels Organiser (R9640)'>Meals on Wheels Organiser (R9640)</option>
+          <option id='Meals Delivery (R9645)'>Meals Delivery (R9645)</option>
+          <option id='Day Centre Manager (R9650)'>Day Centre Manager (R9650)</option>
+          <option id='Day Centre Deputy (R9655)'>Day Centre Deputy (R9655)</option>
+          <option id='Day Centre Officer (R9660)'>Day Centre Officer (R9660)</option>
+          <option id='Day Centre Care Staff (R9665)'>Day Centre Care Staff (R9665)</option>
+          <option id='Family Centre Manager (R9670)'>Family Centre Manager (R9670)</option>
+          <option id='Family Centre Deputy (R9675)'>Family Centre Deputy (R9675)</option>
+          <option id='Family Centre Worker (R9680)'>Family Centre Worker (R9680)</option>
+          <option id='Nursery Manager (R9685)'>Nursery Manager (R9685)</option>
+          <option id='Nursery Deputy (R9690)'>Nursery Deputy (R9690)</option>
+          <option id='Nursery Worker (R9695)'>Nursery Worker (R9695)</option>
+          <option id='Playgroup Leader (R9700)'>Playgroup Leader (R9700)</option>
+          <option id='Playgroup Assistant (R9705)'>Playgroup Assistant (R9705)</option>
+          <option id='Residential Manager (R9710)'>Residential Manager (R9710)</option>
+          <option id='Residential Deputy (R9715)'>Residential Deputy (R9715)</option>
+          <option id='Residential Worker (R9720)'>Residential Worker (R9720)</option>
+          <option id='Residential Care Staff (R9725)'>Residential Care Staff (R9725)</option>
+          <option id='Intermediate Care Manager (R9730)'>Intermediate Care Manager (R9730)</option>
+          <option id='Intermediate Care Deputy (R9735)'>Intermediate Care Deputy (R9735)</option>
+          <option id='Intermediate Care Worker (R9740)'>Intermediate Care Worker (R9740)</option>
+          <option id='Intermediate Care Staff (R9745)'>Intermediate Care Staff (R9745)</option>
+          <option id='Social Care SAP User (R9750)'>Social Care SAP User (R9750)</option>
+          <option id='Social Care SAP Manager (R9755)'>Social Care SAP Manager (R9755)</option>
+          <option id='Clinical Director (R1270)'>Clinical Director (R1270)</option>
+          <option id='Optometrist (R1280)'>Optometrist (R1280)</option>
+          <option id='Pharmacist (R1290)'>Pharmacist (R1290)</option>
+          <option id='Medical Technical Officer - Pharmacy (R1979)'>Medical Technical Officer - Pharmacy (R1979)</option>
+          <option id='Psychotherapist (R1300)'>Psychotherapist (R1300)</option>
+          <option id='Clinical Psychologist (R1310)'>Clinical Psychologist (R1310)</option>
+          <option id='Chaplain (R1320)'>Chaplain (R1320)</option>
+          <option id='Social Worker (R1330)'>Social Worker (R1330)</option>
+          <option id='Approved Social Worker (R1340)'>Approved Social Worker (R1340)</option>
+          <option id='Youth Worker (R1350)'>Youth Worker (R1350)</option>
+          <option id='Specialist Practitioner (R1360)'>Specialist Practitioner (R1360)</option>
+          <option id='Practitioner (R1370)'>Practitioner (R1370)</option>
+          <option id='Dispenser (R0011)'>Dispenser (R0011)</option>
+          <option id='Technician - PS&T (R1380)'>Technician - PS&T (R1380)</option>
+          <option id='Osteopath (R1390)'>Osteopath (R1390)</option>
+          <option id='Healthcare Scientist (R1400)'>Healthcare Scientist (R1400)</option>
+          <option id='Consultant Healthcare Scientist (R1410)'>Consultant Healthcare Scientist (R1410)</option>
+          <option id='Biomedical Scientist (R1420)'>Biomedical Scientist (R1420)</option>
+          <option id='Medical Technical Officer (R0019)'>Medical Technical Officer (R0019)</option>
+          <option id='Technician - Healthcare Scientists (R1430)'>Technician - Healthcare Scientists (R1430)</option>
+          <option id='Therapist (R1440)'>Therapist (R1440)</option>
+          <option id='Associate Practitioner (R1540)'>Associate Practitioner (R1540)</option>
+          <option id='Associate Practitioner - Nurse (R1543)'>Associate Practitioner - Nurse (R1543)</option>
+          <option id='Associate Practitioner - General Practitioner (R1547)'>Associate Practitioner - General Practitioner (R1547)</option>
+          <option id='Helper/Assistant (R1560)'>Helper/Assistant (R1560)</option>
+          <option id='Cytoscreener (R1600)'>Cytoscreener (R1600)</option>
+          <option id='Dental Surgery Assistant (R1570)'>Dental Surgery Assistant (R1570)</option>
+          <option id='Health Care Support Worker (R1450)'>Health Care Support Worker (R1450)</option>
+          <option id='Medical Laboratory Assistant (R1580)'>Medical Laboratory Assistant (R1580)</option>
+          <option id='Counsellor (R1550)'>Counsellor (R1550)</option>
+          <option id='Porter (R0002)'>Porter (R0002)</option>
+          <option id='Call Operator (R1690)'>Call Operator (R1690)</option>
+          <option id='Gateway Worker (R1700)'>Gateway Worker (R1700)</option>
+          <option id='Support, Time, Recovery Worker (R1710)'>Support, Time, Recovery Worker (R1710)</option>
+          <option id='Healthcare Assistant (R1480)'>Healthcare Assistant (R1480)</option>
+          <option id='Nursery Nurse (R1490)'>Nursery Nurse (R1490)</option>
+          <option id='Phlebotomist (R1590)'>Phlebotomist (R1590)</option>
+          <option id='Social Care Support Worker (R1460)'>Social Care Support Worker (R1460)</option>
+          <option id='Home Help (R1470)'>Home Help (R1470)</option>
+          <option id='Technician - Additional Clinical Services (R1520)'>Technician - Additional Clinical Services (R1520)</option>
+          <option id='Technical Instructor (R1530)'>Technical Instructor (R1530)</option>
+          <option id='Patient Welfare Officer (R1980)'>Patient Welfare Officer (R1980)</option>
+          <option id='Play Therapist (R1500)'>Play Therapist (R1500)</option>
+          <option id='Play Specialist (R1510)'>Play Specialist (R1510)</option>
+          <option id='Student Technician (R1610)'>Student Technician (R1610)</option>
+          <option id='Trainee Scientist (R1620)'>Trainee Scientist (R1620)</option>
+          <option id='Trainee Practitioner (R1630)'>Trainee Practitioner (R1630)</option>
+          <option id='Nursing Cadet (R1640)'>Nursing Cadet (R1640)</option>
+          <option id='Healthcare Cadet (R1650)'>Healthcare Cadet (R1650)</option>
+          <option id='Pre-reg Pharmacist (R1660)'>Pre-reg Pharmacist (R1660)</option>
+          <option id='Assistant Psychologist (R1670)'>Assistant Psychologist (R1670)</option>
+          <option id='Assistant Psychotherapist (R1680)'>Assistant Psychotherapist (R1680)</option>
+          <option id='ERS SDS Organisation Reporting Analyst (R0007)'>ERS SDS Organisation Reporting Analyst (R0007)</option>
+          <option id='Demographic Supervisor (R0008)'>Demographic Supervisor (R0008)</option>
+          <option id='DSA NHS Number Manager (Temporary) (R0021)'>DSA NHS Number Manager (Temporary) (R0021)</option>
+          <option id='DSA National Clinical Supervisor (Temporary) (R0022)'>DSA National Clinical Supervisor (Temporary) (R0022)</option>
+          <option id='DSA National Clinical Administrator (Temporary) (R0023)'>DSA National Clinical Administrator (Temporary) (R0023)</option>
+          <option id='Clerical Worker (R1720)'>Clerical Worker (R1720)</option>
+          <option id='Receptionist (R1730)'>Receptionist (R1730)</option>
+          <option id='Secretary (R1740)'>Secretary (R1740)</option>
+          <option id='Personal Assistant (R1750)'>Personal Assistant (R1750)</option>
+          <option id='Demographic Administrator (Sensitive Records) Temporary (R1751)'>Demographic Administrator (Sensitive Records) Temporary (R1751)</option>
+          <option id='Medical Secretary (R1760)'>Medical Secretary (R1760)</option>
+          <option id='Officer (R1770)'>Officer (R1770)</option>
+          <option id='Map of Medicine Administrator (R1971)'>Map of Medicine Administrator (R1971)</option>
+          <option id='Community Administrator (R1973)'>Community Administrator (R1973)</option>
+          <option id='ECC/CPA Administrator (R1977)'>ECC/CPA Administrator (R1977)</option>
+          <option id='Information Officer (R1978)'>Information Officer (R1978)</option>
+          <option id='Health Records Clerk (R1985)'>Health Records Clerk (R1985)</option>
+          <option id='End Point Approver (R1995)'>End Point Approver (R1995)</option>
+          <option id='Network Technician (R5010)'>Network Technician (R5010)</option>
+          <option id='Desktop Support Administrator (R5040)'>Desktop Support Administrator (R5040)</option>
+          <option id='Registration Authority Agent (R5090)'>Registration Authority Agent (R5090)</option>
+          <option id='Demographic Administrator (R5110)'>Demographic Administrator (R5110)</option>
+          <option id='ISP Administrator (R5120)'>ISP Administrator (R5120)</option>
+          <option id='Technical Codes Administrator (R5130)'>Technical Codes Administrator (R5130)</option>
+          <option id='OSS Administrator (R5140)'>OSS Administrator (R5140)</option>
+          <option id='End Point Administrator (R5170)'>End Point Administrator (R5170)</option>
+          <option id='End Point Viewer (R5175)'>End Point Viewer (R5175)</option>
+          <option id='RTS Dashboard User (R5181)'>RTS Dashboard User (R5181)</option>
+          <option id='RTS BT Dashboard User (R5183)'>RTS BT Dashboard User (R5183)</option>
+          <option id='ERS BT Customer SLA User (R5186)'>ERS BT Customer SLA User (R5186)</option>
+          <option id='ERS BT Supplier SLA User (R5188)'>ERS BT Supplier SLA User (R5188)</option>
+          <option id='ERS LogicaCMG SLA User (R5189)'>ERS LogicaCMG SLA User (R5189)</option>
+          <option id='Content Creator (R5190)'>Content Creator (R5190)</option>
+          <option id='Content Publisher (R5195)'>Content Publisher (R5195)</option>
+          <option id='User Details Administrator (R5210)'>User Details Administrator (R5210)</option>
+          <option id='EBS Administrator (R5250)'>EBS Administrator (R5250)</option>
+          <option id='Appointments Clerk (R6010)'>Appointments Clerk (R6010)</option>
+          <option id='Ward Clerk (R6030)'>Ward Clerk (R6030)</option>
+          <option id='Clinical Coder (R6050)'>Clinical Coder (R6050)</option>
+          <option id='Medical Records Clerk (R6060)'>Medical Records Clerk (R6060)</option>
+          <option id='Waiting List Clerk (R6080)'>Waiting List Clerk (R6080)</option>
+          <option id='Trainer (R7100)'>Trainer (R7100)</option>
+          <option id='Training Manager (R7110)'>Training Manager (R7110)</option>
+          <option id='Directory of Services Coordinator (R7120)'>Directory of Services Coordinator (R7120)</option>
+          <option id='ETP System Administrator (R9756)'>ETP System Administrator (R9756)</option>
+          <option id='Manager (R1780)'>Manager (R1780)</option>
+          <option id='Senior Manager (R1790)'>Senior Manager (R1790)</option>
+          <option id='Chair (R1910)'>Chair (R1910)</option>
+          <option id='Chief Executive (R1920)'>Chief Executive (R1920)</option>
+          <option id='Finance Director (R1930)'>Finance Director (R1930)</option>
+          <option id='Other Executive Director (R1940)'>Other Executive Director (R1940)</option>
+          <option id='Board Level Director (R1950)'>Board Level Director (R1950)</option>
+          <option id='Non Executive Director (R1960)'>Non Executive Director (R1960)</option>
+          <option id='Childcare Co-ordinator (R1970)'>Childcare Co-ordinator (R1970)</option>
+          <option id='Senior Administrator (R1982)'>Senior Administrator (R1982)</option>
+          <option id='Ward Manager (R1983)'>Ward Manager (R1983)</option>
+          <option id='Workgroup Administrator (R1986)'>Workgroup Administrator (R1986)</option>
+          <option id='National RBAC Attribute Administrator (R1987)'>National RBAC Attribute Administrator (R1987)</option>
+          <option id='National RBAC Baseline Policy Administrator (R1988)'>National RBAC Baseline Policy Administrator (R1988)</option>
+          <option id='Complaints Coordinator (R1989)'>Complaints Coordinator (R1989)</option>
+          <option id='Complaints Investigator (R1990)'>Complaints Investigator (R1990)</option>
+          <option id='End Point DNS Administrator (R1996)'>End Point DNS Administrator (R1996)</option>
+          <option id='End Point Spine Administrator (R1997)'>End Point Spine Administrator (R1997)</option>
+          <option id='End Point Super User (R1998)'>End Point Super User (R1998)</option>
+          <option id='End Point Service Administrator (R1999)'>End Point Service Administrator (R1999)</option>
+          <option id='Network Administrator (R5000)'>Network Administrator (R5000)</option>
+          <option id='Cluster System Administrator (R5003)'>Cluster System Administrator (R5003)</option>
+          <option id='System Administrator (R5007)'>System Administrator (R5007)</option>
+          <option id='Helpdesk Administrator (R5020)'>Helpdesk Administrator (R5020)</option>
+          <option id='Security Policy Controller (R5060)'>Security Policy Controller (R5060)</option>
+          <option id='Senior Security Manager (R5070)'>Senior Security Manager (R5070)</option>
+          <option id='Root Registration Authority Manager (R5072)'>Root Registration Authority Manager (R5072)</option>
+          <option id='Registration Authority Manager (R5080)'>Registration Authority Manager (R5080)</option>
+          <option id='Audit Manager (R5100)'>Audit Manager (R5100)</option>
+          <option id='Caldicott Guardian (R5105)'>Caldicott Guardian (R5105)</option>
+          <option id='NASP Service Manager (R5180)'>NASP Service Manager (R5180)</option>
+          <option id='ERS ETP System Administrator (R5182)'>ERS ETP System Administrator (R5182)</option>
+          <option id='ERS Spine SLA Manager (R5184)'>ERS Spine SLA Manager (R5184)</option>
+          <option id='ERS BT Customer SLA Manager (R5185)'>ERS BT Customer SLA Manager (R5185)</option>
+          <option id='ERS BT Supplier SLA Manager (R5187)'>ERS BT Supplier SLA Manager (R5187)</option>
+          <option id='ERS Support Administrator (R5191)'>ERS Support Administrator (R5191)</option>
+          <option id='ECS Administrator (R5192)'>ECS Administrator (R5192)</option>
+          <option id='Portal Administrator (R5300)'>Portal Administrator (R5300)</option>
+          <option id='LiquidLogic Administrator (R5310)'>LiquidLogic Administrator (R5310)</option>
+          <option id='i.EPR Administrator (R5320)'>i.EPR Administrator (R5320)</option>
+          <option id='Synergy Administrator (R5330)'>Synergy Administrator (R5330)</option>
+          <option id='SystmOne Administrator (R5340)'>SystmOne Administrator (R5340)</option>
+          <option id='Outpatient Manager (R6020)'>Outpatient Manager (R6020)</option>
+          <option id='Bed Manager (R6040)'>Bed Manager (R6040)</option>
+          <option id='Medical Records Manager (R6070)'>Medical Records Manager (R6070)</option>
+          <option id='Waiting List Manager (R6090)'>Waiting List Manager (R6090)</option>
+          <option id='Mental Health Act Administrator (R6100)'>Mental Health Act Administrator (R6100)</option>
+          <option id='Ad-hoc Report Manager (R6160)'>Ad-hoc Report Manager (R6160)</option>
+          <option id='PAS Manager (R7130)'>PAS Manager (R7130)</option>
+          <option id='Technician - Admin & Clerical (R1800)'>Technician - Admin & Clerical (R1800)</option>
+          <option id='Accountant (R1810)'>Accountant (R1810)</option>
+          <option id='Librarian (R1820)'>Librarian (R1820)</option>
+          <option id='Interpreter (R1830)'>Interpreter (R1830)</option>
+          <option id='Analyst (R1840)'>Analyst (R1840)</option>
+          <option id='Adviser (R1850)'>Adviser (R1850)</option>
+          <option id='Researcher (R1860)'>Researcher (R1860)</option>
+          <option id='Control Assistant (R1870)'>Control Assistant (R1870)</option>
+          <option id='Architect (R1880)'>Architect (R1880)</option>
+          <option id='Lawyer (R1890)'>Lawyer (R1890)</option>
+          <option id='Surveyor (R1900)'>Surveyor (R1900)</option>
+          <option id='Helpdesk Technician (R5030)'>Helpdesk Technician (R5030)</option>
+          <option id='Desktop Support Technician (R5050)'>Desktop Support Technician (R5050)</option>
+          <option id='System Worker (R5150)'>System Worker (R5150)</option>
+          <option id='Availability Monitor (R5400)'>Availability Monitor (R5400)</option>
+          <option id='Clinical Practitioner Access Role (R8000)'>Clinical Practitioner Access Role (R8000)</option>
+          <option id='Nurse Access Role (R8001)'>Nurse Access Role (R8001)</option>
+          <option id='Nurse Manager Access Role (R8002)'>Nurse Manager Access Role (R8002)</option>
+          <option id='Health Professional Access Role (R8003)'>Health Professional Access Role (R8003)</option>
+          <option id='Healthcare Student Access Role (R8004)'>Healthcare Student Access Role (R8004)</option>
+          <option id='Midwife Access Role (R8016)'>Midwife Access Role (R8016)</option>
+          <option id='Midwife Manager Access Role (R8017)'>Midwife Manager Access Role (R8017)</option>
+          <option id='Bank Access Role (R8024)'>Bank Access Role (R8024)</option>
+          <option id='Biomedical Scientist Access Role (R8005)'>Biomedical Scientist Access Role (R8005)</option>
+          <option id='Medical Secretary Access Role (R8006)'>Medical Secretary Access Role (R8006)</option>
+          <option id='Clinical Coder Access Role (R8007)'>Clinical Coder Access Role (R8007)</option>
+          <option id='Admin/Clinical Support Access Role (R8008)'>Admin/Clinical Support Access Role (R8008)</option>
+          <option id='Systems Support Access Role (R8015)'>Systems Support Access Role (R8015)</option>
+          <option id='Privacy Officer (R0001)'>Privacy Officer (R0001)</option>
+          <option id='Receptionist Access Role (R8009)'>Receptionist Access Role (R8009)</option>
+          <option id='Clerical Access Role (R8010)'>Clerical Access Role (R8010)</option>
+          <option id='Clerical Manager Access Role (R8011)'>Clerical Manager Access Role (R8011)</option>
+          <option id='Information Officer Access Role (R8012)'>Information Officer Access Role (R8012)</option>
+          <option id='Health Records Manager Access Role (R8013)'>Health Records Manager Access Role (R8013)</option>
+        </select>
+
+        <div class="auto nhsuk-u-margin-bottom-4">
+        </div>
+
+        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+        </input>
+      </form>
+
+
+
+    </div>
+  </div>
+{% endblock %}

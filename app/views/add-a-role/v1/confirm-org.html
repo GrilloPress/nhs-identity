@@ -1,0 +1,65 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+{% if data['input-autocomplete'] %}
+  {% set org = data['input-autocomplete'] %}
+{% else %}
+  {% set org = "Sheffield Teaching Hospitals NHS Foundation Trust" %}
+{% endif %}
+{% set contentTitle = "Is " + org + " the organisation you want to add a new role to?" %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "add-a-role/v1" %}
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="/{{PROTOTYPEURL}}/confirm-org" method="post">
+
+        {{ radios({
+          "idPrefix": "anotherOrgID",
+          "name": "anotherOrg",
+          "fieldset": {
+            "legend": {
+              "text": contentTitle,
+              "isPageHeading": true,
+              "classes": "nhsuk-label--l"
+            }
+          },
+          "items": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No, I need to add another organisation"
+            }
+          ]
+        }) }}
+
+        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+        </input>
+      </form>
+
+
+
+    </div>
+  </div>
+{% endblock %}

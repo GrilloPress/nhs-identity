@@ -2,12 +2,13 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Log in with your email" %}
+{% set contentTitle = "Enter your date of birth" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
-{% set PROTOTYPEURL = "use-a-service/v1" %}
+{% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -23,29 +24,45 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 
 {% block content %}
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
+    <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="/{{ PROTOTYPEURL }}/enter-your-security-code" method="get">
+      <form action="/{{ PROTOTYPEURL }}/details/your-phone-number" method="get">
 
-        {{ input({
-          "label": {
+        {{ dateInput({
+        "id": "dob",
+        "namePrefix": "dob",
+        "fieldset": {
+          "legend": {
             "text": contentTitle,
             "isPageHeading": true,
             "classes": "nhsuk-label--l"
+          }
+        },
+        "hint": {
+          "text": "For example, 5 7 1948"
+        },
+        "items": [
+          {
+            "name": "day",
+            "classes": "nhsuk-input--width-2"
           },
-          "id": "inputemail",
-          "name": "email",
-          "type": "email",
-          "classes": "nhsuk-input--width-20"
-        }) }}
+          {
+            "name": "month",
+            "classes": "nhsuk-input--width-2"
+          },
+          {
+            "name": "year",
+            "classes": "nhsuk-input--width-4"
+          }
+        ]
+      }) }}
 
         <input type="submit" class="nhsuk-button identity-button" value="Continue">
         </input>
       </form>
 
-      <p>
-        If you do not have an NHS identity, <a href="/register-account/v1/get-an-nhs-identity">you can register for one</a>
-      </p>
+
+
     </div>
   </div>
 {% endblock %}

@@ -2,12 +2,14 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Log in with your email" %}
+{% set role = "<role>" %}
+{% set contentTitle = "Sorry, you are not able to use this service as " + role %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
-{% set PROTOTYPEURL = "register-account/v1" %}
+{% set PROTOTYPEURL = "add-a-role/v1" %}
+{% set forwardService = "<service name>" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -25,27 +27,19 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="/{{ PROTOTYPEURL }}/no-account" method="get">
+      <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
+      <p>To use {{ forwardService }}, you'll need to ask for the {{ role }} role to be added to your NHS identity.</p>
 
-        {{ input({
-          "label": {
-            "text": contentTitle,
-            "isPageHeading": true,
-            "classes": "nhsuk-label--l"
-          },
-          "id": "inputemail",
-          "name": "email",
-          "type": "email",
-          "classes": "nhsuk-input--width-20"
-        }) }}
-
-        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+      <form action="/{{ PROTOTYPEURL }}/get-a-new-role" method="get">
+        <input type="submit" class="nhsuk-button identity-button" value="Ask for new role">
         </input>
       </form>
 
-      <p>
-        If you do not have an NHS identity, <a href="/{{ PROTOTYPEURL }}/get-an-nhs-identity">you can register one</a>
-      </p>
+      {{ backLink({
+        "href": "/" + PROTOTYPEURL + "/enter-your-email",
+        "text": "Go back to the previous page"
+      }) }}
+
 
     </div>
   </div>

@@ -20,4 +20,82 @@ router.post('/examples/branching/answer', function (req, res) {
   }
 });
 
+// Branching example
+router.post('/register-account/v1/get-your-security-code', function (req, res) {
+  let answer = req.body.confirmEmail;
+
+  if (answer === 'yes') {
+    res.redirect('/register-account/v1/confirm-your-email')
+  } else {
+    res.redirect('/register-account/v1/tell-us-which-email-you-want-to-use')
+  }
+});
+
+// Have you had a smart card?
+router.post('/register-account/v1/details/smartcard', function (req, res) {
+  let answer = req.body.hadSmartcard;
+
+  if (answer === 'yes') {
+    res.redirect('/register-account/v1/details/do-you-know-your-smartcard-number')
+  } else {
+    res.redirect('/register-account/v1/details/organisation')
+  }
+});
+
+// Do you know your smartcard number?
+router.post('/register-account/v1/details/do-you-know-your-smartcard-number', function (req, res) {
+  let answer = req.body.knowSmartcard;
+
+  if (answer === 'yes') {
+    res.redirect('/register-account/v1/details/smartcard-number')
+  } else {
+    res.redirect('/register-account/v1/details/organisation')
+  }
+});
+
+// Do you know your smartcard number?
+router.post('/register-account/v1/details/your-organisation', function (req, res) {
+  let answer = req.body.anotherOrg;
+
+  if (answer === 'yes') {
+    res.redirect('/register-account/v1/details/organisation')
+  } else {
+    res.redirect('/register-account/v1/details/choose-your-role')
+  }
+});
+
+// Do you know your smartcard number?
+router.post('/add-a-role/v1/confirm-role', function (req, res) {
+  let answer = req.body.confirmRole;
+
+  if (answer === 'yes') {
+    res.redirect('/add-a-role/v1/check-details')
+  } else {
+    res.redirect('/add-a-role/v1/choose-role')
+  }
+});
+
+// Is this your org?
+router.post('/add-a-role/v1/confirm-org', function (req, res) {
+  let answer = req.body.anotherOrg;
+
+  if (answer === 'yes') {
+    res.redirect('/add-a-role/v1/choose-role')
+  } else {
+    res.redirect('/add-a-role/v1/new-org/organisation')
+  }
+});
+
+// Is this your org?
+router.post('/add-a-role/v1/new-org/confirm-org', function (req, res) {
+  let answer = req.body.anotherOrg;
+
+  if (answer === 'yes') {
+    res.redirect('/add-a-role/v1/choose-role')
+  } else {
+    res.redirect('/add-a-role/v1/new-org/organisation')
+  }
+});
+
+
 module.exports = router;

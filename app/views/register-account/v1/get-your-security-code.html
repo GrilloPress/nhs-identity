@@ -1,0 +1,67 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+
+{% if data['email'] %}
+  {% set contentTitle = "Is " + data['email'] + " the email address you want to register?" %}
+  {% set yesRadio = "Yes " + data['email'] + " is my email address" %}
+{% else %}
+  {% set contentTitle = "Is test@example.com the email address you want to register?" %}
+  {% set yesRadio = "Yes, test@example.com is my email address" %}
+{% endif %}
+
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{% set PROTOTYPEURL = "register-account/v1" %}
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {{ radios({
+          "idPrefix": "confirmEmailID",
+          "name": "confirmEmail",
+          "fieldset": {
+            "legend": {
+              "text": contentTitle,
+              "isPageHeading": true,
+              "classes": "nhsuk-label--l"
+            }
+          },
+          "hint": {
+            "text": "We'll send you an email to confirm your email is correct"
+          },
+          "items": [
+            {
+              "value": "yes",
+              "text": yesRadio
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ]
+        }) }}
+
+        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+        </input>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+{% set contentTitle = "Your roles" %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
+  {% if data['location-picker'] %}
+    {% set role = data['location-picker'] %}
+  {% else %}
+    {% set role = "Special role" %}
+  {% endif %}
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key nhsuk-u-visually-hidden">
+            First role
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ role }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+             Change<span class="nhsuk-u-visually-hidden"> role</span>
+           </a>
+         </dd>
+        </div>
+      </dl>
+
+      <form action="" method="post">
+
+        {{ radios({
+          "idPrefix": "anotherRoleID",
+          "name": "anotherRole",
+          "fieldset": {
+            "legend": {
+              "text": "Would you like to add another role?",
+              "isPageHeading": false,
+              "classes": "nhsuk-label--m"
+            }
+          },
+          "items": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ]
+        }) }}
+
+        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+        </input>
+      </form>
+
+
+
+    </div>
+  </div>
+{% endblock %}

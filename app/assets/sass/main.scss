@@ -16,6 +16,12 @@
 @import 'prototype/navbar';
 @import 'prototype/footer';
 @import 'prototype/button';
+@import 'prototype/card';
+@import 'prototype/autocomplete';
+
+// temp
+@import 'prototype/summary-list';
+
 
 html {
 
@@ -26,4 +32,14 @@ html {
 
   list-style-type: none;
   padding-left: 0;
+}
+
+.identity-smartcard {
+
+  max-width: 100%;
+  margin: 0 0 nhsuk-spacing(2) 0;
+  @include mq($from: desktop) {
+
+    max-width: 60%;
+    }
 }

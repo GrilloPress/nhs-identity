@@ -1,0 +1,116 @@
+
+  .govuk-summary-list {
+    @include nhsuk-font(16);
+    @include mq($from: tablet) {
+      display: table;
+      width: 100%;
+    }
+    margin: 0; // Reset default user agent styles
+    margin-bottom: nhsuk-spacing(4);
+
+  }
+
+  .govuk-summary-list  {
+
+    // Force paragraphs to be 16px to ensure larger cells keep the
+    // visual distinction between key and value
+    p, address {
+      @include nhsuk-font(16);
+    }
+  }
+
+    .govuk-summary-list__row {
+      @include mq($until: tablet) {
+        margin-bottom: nhsuk-spacing(2);
+        border-bottom: 1px solid $nhsuk-border-color;
+      }
+      @include mq($from: tablet) {
+        display: table-row;
+      }
+    }
+
+        .govuk-summary-list__key,
+        .govuk-summary-list__value,
+        .govuk-summary-list__actions {
+          margin: 0; // Reset default user agent styles
+
+          @include mq($from: tablet) {
+            display: table-cell;
+            padding-right: nhsuk-spacing(4);
+          }
+        }
+
+        .govuk-summary-list__key,
+        .govuk-summary-list__value,
+        .govuk-summary-list__actions {
+          @include mq($from: tablet) {
+            padding-top: nhsuk-spacing(2);
+            padding-bottom: nhsuk-spacing(2);
+            border-bottom: 1px solid $nhsuk-border-color;
+          }
+        }
+
+        .govuk-summary-list__actions {
+          margin-bottom: nhsuk-spacing(1);
+          @include mq($from: tablet) {
+            padding-right: 0;
+            text-align: center;
+          }
+        }
+
+        .govuk-summary-list__key {
+          @include nhsuk-font(19);
+          margin-bottom: nhsuk-spacing(1);
+          font-weight: $nhsuk-font-bold;
+          word-break: break-word;
+          @include mq($from: tablet) {
+            width: 30%;
+          }
+        }
+
+        .govuk-summary-list__value {
+          @include mq($until: tablet) {
+            margin-bottom: nhsuk-spacing(1);
+          }
+        }
+
+        .govuk-summary-list__value > p {
+          margin-bottom: nhsuk-spacing(1);
+        }
+
+        .govuk-summary-list__value > :last-child {
+          margin-bottom: 0;
+        }
+
+        .govuk-summary-list__actions-list {
+          width: 100%;
+          margin: 0; // Reset default user agent styles
+          padding: 0; // Reset default user agent styles
+        }
+
+        .govuk-summary-list__actions-list-item {
+          display: inline;
+          margin-right:  nhsuk-spacing(2);
+          padding-right: nhsuk-spacing(2);
+        }
+
+        // In older browsers such as IE8, :last-child is not available,
+        // so only show the border divider where it is available.
+        .govuk-summary-list__actions-list-item:not(:last-child) {
+          border-right: 1px solid $nhsuk-border-color;
+        }
+
+        .govuk-summary-list__actions-list-item:last-child {
+          margin-right: 0;
+          padding-right: 0;
+          border: 0;
+        }
+
+        .govuk-summary-list--no-border {
+          .govuk-summary-list__key,
+          .govuk-summary-list__value,
+          .govuk-summary-list__actions,
+          .govuk-summary-list__row {
+            border: 0;
+          }
+        }
