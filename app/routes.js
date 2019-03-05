@@ -58,11 +58,23 @@ router.post('/register-account/v1/details/your-organisation', function (req, res
   let answer = req.body.anotherOrg;
 
   if (answer === 'yes') {
-    res.redirect('/register-account/v1/details/organisation')
+
+    if ( req.session.data.ODS3 ) {
+      res.redirect('/register-account/v1/details/org/4')
+    } else if ( req.session.data.ODS2 ) {
+      res.redirect('/register-account/v1/details/org/3')
+    } else {
+      res.redirect('/register-account/v1/details/org/2')
+    }
+
+
+
+
   } else {
     res.redirect('/register-account/v1/details/choose-your-role')
   }
 });
+
 
 // Do you know your smartcard number?
 router.post('/add-a-role/v1/confirm-role', function (req, res) {

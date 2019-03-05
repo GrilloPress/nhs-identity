@@ -2,7 +2,7 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set contentTitle = "Your organisations" %}
+{% set contentTitle = "Check your organisations" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
@@ -33,7 +33,10 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 
       <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
 
+      <p>You've reached the maximum (4) organisations you can add to your NHS identity.</p>
+
       {% if org %}
+      <h2 class="nhsuk-heading-m">Your organisations</h2>
       <ol class="govuk-summary-list">
         <li class="govuk-summary-list__row">
           <div class="govuk-summary-list__value">
@@ -84,29 +87,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
       </ol>
       {% endif %}
 
-      <form action="" method="post">
-
-        {{ radios({
-          "idPrefix": "anotherOrgID",
-          "name": "anotherOrg",
-          "fieldset": {
-            "legend": {
-              "text": "Would you like to add another organisation?",
-              "isPageHeading": false,
-              "classes": "nhsuk-label--m"
-            }
-          },
-          "items": [
-            {
-              "value": "yes",
-              "text": "Yes"
-            },
-            {
-              "value": "no",
-              "text": "No"
-            }
-          ]
-        }) }}
+      <form action="/{{ PROTOTYPEURL }}/details/choose-your-role" method="post">
 
         <input type="submit" class="nhsuk-button identity-button" value="Continue">
         </input>
