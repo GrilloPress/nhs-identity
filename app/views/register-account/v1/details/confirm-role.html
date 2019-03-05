@@ -10,14 +10,14 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% if data['role'] %}
   {% set role = data['role'] %}
 {% else %}
-  {% set role = "Special role" %}
+  {% set role = "Consultant (R0050)" %}
 {% endif %}
 {% set contentTitle = "You chose " + role + ". Is this correct?" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
-{% set PROTOTYPEURL = "add-a-role/v1" %}
+{% set PROTOTYPEURL = "register-account/v1" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -35,7 +35,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="/{{PROTOTYPEURL}}/confirm-role" method="post">
+      <form action="/{{PROTOTYPEURL}}/details/confirm-role" method="post">
 
         {{ radios({
           "idPrefix": "confirmRoleID",

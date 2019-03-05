@@ -33,8 +33,6 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 
       <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
 
-      <p>You've reached the maximum (4) organisations you can add to your NHS identity.</p>
-
       {% if org %}
       <h2 class="nhsuk-heading-m">Your organisations</h2>
       <ol class="govuk-summary-list">
@@ -87,6 +85,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
       </ol>
       {% endif %}
 
+      <p>You've reached the maximum (4) organisations you can add to your NHS identity.</p>
       <form action="/{{ PROTOTYPEURL }}/details/choose-your-role" method="post">
 
         <input type="submit" class="nhsuk-button identity-button" value="Continue">

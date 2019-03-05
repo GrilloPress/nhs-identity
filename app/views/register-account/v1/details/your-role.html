@@ -9,8 +9,8 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {# set width = "800" #}
 {% set PROTOTYPEURL = "register-account/v1" %}
 {% set forwardService = "<service name>" %}
-  {% if data['location-picker'] %}
-    {% set role = data['location-picker'] %}
+  {% if data['role'] %}
+    {% set role = data['role'] %}
   {% else %}
     {% set role = "Special role" %}
   {% endif %}
@@ -33,21 +33,56 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 
       <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
 
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key nhsuk-u-visually-hidden">
-            First role
-          </dt>
-          <dd class="govuk-summary-list__value">
+      {% if role %}
+      <ol class="govuk-summary-list">
+        <li class="govuk-summary-list__row">
+          <div class="govuk-summary-list__value">
             {{ role }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
+          </div>
+          <div class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-             Change<span class="nhsuk-u-visually-hidden"> role</span>
+             Change<span class="nhsuk-u-visually-hidden"> organisation</span>
            </a>
-         </dd>
+         </div>
+       </li>
+       {% if data['role2'] %}
+       <li class="govuk-summary-list__row">
+         <div class="govuk-summary-list__value">
+           {{ data['role2'] }}
+         </div>
+         <div class="govuk-summary-list__actions">
+           <a class="govuk-link" href="#">
+            Change<span class="nhsuk-u-visually-hidden"> organisation</span>
+          </a>
         </div>
-      </dl>
+      </li>
+       {% endif %}
+       {% if data['role3'] %}
+       <li class="govuk-summary-list__row">
+         <div class="govuk-summary-list__value">
+           {{ data['role3'] }}
+         </div>
+         <div class="govuk-summary-list__actions">
+           <a class="govuk-link" href="#">
+            Change<span class="nhsuk-u-visually-hidden"> organisation</span>
+          </a>
+        </div>
+      </li>
+       {% endif %}
+       {% if data['role4'] %}
+       <li class="govuk-summary-list__row">
+         <div class="govuk-summary-list__value">
+           {{ data['role4'] }}
+         </div>
+         <div class="govuk-summary-list__actions">
+           <a class="govuk-link" href="#">
+            Change<span class="nhsuk-u-visually-hidden"> organisation</span>
+          </a>
+        </div>
+      </li>
+       {% endif %}
+      </ol>
+      {% endif %}
 
       <form action="" method="post">
 
