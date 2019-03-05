@@ -1,0 +1,84 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+
+{% if data['ODS'] %}
+  {% set org = data['ODS'] %}
+{% else %}
+  {% set org = "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST (RHQ)" %}
+{% endif %}
+
+
+{% set contentTitle = "Where you work" %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="/{{ PROTOTYPEURL }}/details/your-dob" method="get">
+
+        {% call fieldset({
+          "legend": {
+            "text": contentTitle,
+            "classes": "nhsuk-fieldset__legend--l",
+            "isPageHeading": true
+          }
+        }) %}
+
+        <p>To register for your NHS identity you need to provide some extra information.</p>
+
+        {{ input({
+          "label": {
+            "text": "Your directorate",
+            "isPageHeading": false,
+            "classes": "nhsuk-label--s"
+          },
+          "id": "directorate",
+          "name": "directorate"
+        }) }}
+
+        {{ input({
+          "label": {
+            "text": "Your main work location",
+            "isPageHeading": false,
+            "classes": "nhsuk-label--s"
+          },
+          "hint": {
+            "text": "For example, Royal Hallamshire Hospital"
+          },
+          "id": "worklocation",
+          "name": "worklocation",
+          "classes": "nhsuk-input--width-20"
+        }) }}
+
+
+        {% endcall %}
+
+        <input type="submit" class="nhsuk-button identity-button" value="Continue">
+        </input>
+      </form>
+
+
+
+    </div>
+  </div>
+{% endblock %}
