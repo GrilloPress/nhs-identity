@@ -47,7 +47,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   {% if data['hadSmartcard'] %}
 
     {% if data['smartID'] %}
-      {% set smartcard = "data['smartID']" %}
+      {% set smartcard = data['smartID'] %}
     {% else %}
       {% set smartcard = "Number not known" %}
     {% endif %}
