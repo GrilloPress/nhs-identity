@@ -1,0 +1,46 @@
+// GP headings
+
+.identity-list-cards {
+
+  a {
+
+    text-decoration: none;
+    color: $color_nhsuk-black;
+    display: block;
+
+    &:hover {
+
+      background-color: $nhsuk-link-hover-background-color;
+
+    }
+  }
+
+}
+
+.identity-list-cards__item {
+
+  margin-bottom: nhsuk-spacing(5);
+
+}
+
+.identity-list-cards__heading {
+
+  color: $color_nhsuk-blue;
+  margin-bottom: nhsuk-spacing(2);
+}
+
+.identity-list-cards__heading--no-link {
+
+  color: $color_nhsuk-black;
+  margin-bottom: nhsuk-spacing(2);
+}
+
+
+// GP list-cards
+
+.nhsuk-list-panel-inner-list__container {
+
+  border-bottom: $nhsuk-border-list-panel-item solid $color_nhsuk-grey-4;
+  margin: 0;
+  padding: nhsuk-spacing(3);
+}

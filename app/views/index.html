@@ -28,25 +28,54 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
         <span class="nhsuk-caption-xl nhsuk-caption--bottom">March 2019</span>
       </h1>
 
-      <h2>Prototypes</h2>
-      <ul class="identity-list--unstyled">
-        <li>
-          <a href="/use-a-service/v1/enter-your-email">Returning user</a>
+      <ol class="identity-list--unstyled identity-list-cards">
+        <li class="identity-list-cards__item">
+          <a href="/use-a-service/v1/enter-your-email">
+            <h2 class="identity-list-cards__heading nhsuk-heading-m">Log in to use this service (returning user)</h2>
+            <p>User has an NHS indentity and signs on to their service</p>
+          </a>
         </li>
-        <li>
-          <a href="/register-account/v1/enter-your-email">Register user</a>
+        <li class="identity-list-cards__item">
+          <a href="/register-account/v1/enter-your-email">
+            <h2 class="identity-list-cards__heading nhsuk-heading-m">Register for an NHS identity to log in to this service (email verification)</h2>
+            <p>User either registers or is intercepted and asked to create an account</p>
+            <p>Journey ends with an email.</p>
+          </a>
         </li>
-        <li>
-          <a href="/register-account/v1/details/continue">Post email register user</a>
+        <li class="identity-list-cards__item">
+          <a href="/register-account/v1/details/continue">
+            <h2 class="identity-list-cards__heading nhsuk-heading-m">Register for an NHS identity to log in to this service (account registration)</h2>
+            <p>Let users see how their personal data has been used for research and planning</p>
+          </a>
         </li>
-        <li>
-          <a href="/add-a-role/v1/enter-your-email">Add a role</a>
+        <li class="identity-list-cards__item">
+          <a href="/add-a-role/v1/enter-your-email">
+            <h2 class="identity-list-cards__heading nhsuk-heading-m">Add a role to your NHS identity to use this service</h2>
+            <p>Help users get to their service by request a role to be added to their NHS identity</p>
+          </a>
         </li>
+      </ol>
 
 
 
 
-      </ul>
+
+        <h2>Alternatives</h2>
+
+        <h3>Register for a new role</h3>
+        <p>
+          If the user selects an organisation and or role that needs additional questions, the questions can be displayed after those have been selected
+        </p>
+        <p><a href="/register-account/v1/details/alts/your-name">Where you work (additional location questions for NHS Trust)</a></p>
+
+        <h3>Add a role</h3>
+        <p>
+          If the user already has more than one organisation, the first screen they see will be to confirm the organisation they wish to assign the role to.
+        </p>
+        <p><a href="/add-a-role/v1/alts/more-than-one-org">Choose which organisation you want to add a role to</a></p>
+
+
+
 
       <!-- End of content -->
 

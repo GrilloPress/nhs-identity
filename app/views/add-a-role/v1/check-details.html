@@ -10,22 +10,21 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set PROTOTYPEURL = "add-a-role/v1" %}
 {% set forwardService = "<service name>" %}
 
-  {% if data['location-picker'] %}
-    {% set role = data['location-picker'] %}
+  {% if data['ODS'] %}
+    {% set org = data['ODS'] %}
   {% else %}
-    {% set role = "Special role" %}
+    {% set org = "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST (RHQ)" %}
+  {% endif %}
+  {% if data['role'] %}
+    {% set role = data['role'] %}
+  {% else %}
+    {% set role = "Consultant (R0050)" %}
   {% endif %}
 
   {% if data['email'] %}
     {% set email = data['email'] %}
   {% else %}
     {% set email = "test@example.com" %}
-  {% endif %}
-
-  {% if data['ODS'] %}
-    {% set org = data['ODS'] %}
-  {% else %}
-    {% set org = "Sheffield Teaching Hospitals NHS Foundation Trust" %}
   {% endif %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
