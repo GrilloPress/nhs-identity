@@ -1,0 +1,233 @@
+<!--
+ADDING CUSTOM CSS
+Add your custom CSS/Sass to /app/assets/sass/main.scss
+-->
+{% set contentTitle = "Check your details" %}
+{% set title = contentTitle + " - " + serviceName %}
+{% set serviceName = "NHS identity" %}
+{% set nhsIdentity = "true" %}
+{# set width = "800" #}
+{% set PROTOTYPEURL = "register-account/v1" %}
+{% set forwardService = "<service name>" %}
+  {% if data['ODS'] %}
+    {% set org = data['ODS'] %}
+  {% else %}
+    {% set org = "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST (RHQ)" %}
+  {% endif %}
+  {% if data['role'] %}
+    {% set role = data['role'] %}
+  {% else %}
+    {% set role = "Consultant (R0050)" %}
+  {% endif %}
+
+  {% if data['FirstName'] %}
+    {% set fullName = data['FirstName'] + " " + data['LastName'] %}
+  {% else %}
+    {% set fullName = "Sally Wash" %}
+  {% endif %}
+
+  {% if data['Tel'] %}
+    {% set phone = data['Tel'] %}
+  {% else %}
+    {% set phone = "0114 268 0000" %}
+  {% endif %}
+
+  {% if data['email'] %}
+    {% set email = data['email'] %}
+  {% else %}
+    {% set email = "test@example.com" %}
+  {% endif %}
+
+  {% if data['dob-day'] %}
+    {% set dob = data['dob-day'] + " " + data['dob-month'] + " " + data['dob-year'] %}
+  {% else %}
+    {% set dob = "01 01 1987" %}
+  {% endif %}
+
+  {% if data['hadSmartcard'] %}
+
+    {% if data['smartID'] %}
+      {% set smartcard = "data['smartID']" %}
+    {% else %}
+      {% set smartcard = "Number not known" %}
+    {% endif %}
+
+  {% else %}
+    {% set smartcard = "None" %}
+  {% endif %}
+
+  {% set organisations %}
+    <p>{{ org }}</p>
+    {% if data['ODS2'] %}
+      <p>{{ data['ODS2'] }}</p>
+    {% endif %}
+    {% if data['ODS3'] %}
+      <p>{{ data['ODS3'] }}</p>
+    {% endif %}
+    {% if data['ODS4'] %}
+      <p>{{ data['ODS4'] }}</p>
+    {% endif %}
+  {% endset %}
+
+
+
+
+<!-- Extends the layout from /app/views/layouts/layout.html -->
+{% extends 'layouts/layout-nhs-identity.html' %}
+
+<!-- Set the page title inside this block -->
+{% block pageTitle %}
+  {{ title }}
+{% endblock %}
+
+<!-- Breadcrumb goes inside this block -->
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
+
+      <h2 class="nhsuk-heading-s">Your personal details</h2>
+      {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Name"
+              },
+              value: {
+                text: fullName
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Date of birth"
+              },
+              value: {
+                text: dob
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "date of birth"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email"
+              },
+              value: {
+                text: email
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Phone number"
+              },
+              value: {
+                text: phone
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "phone number"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Smartcard"
+              },
+              value: {
+                text: smartcard
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "answer"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Organisation"
+              },
+              value: {
+                html: organisations
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "organisation"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Role"
+              },
+              value: {
+                html: role
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "role"
+                  }
+                ]
+              }
+            }
+          ]
+          }) }}
+
+
+      <form action="/{{ PROTOTYPEURL }}/details/end" method="post">
+
+        <h2 class="nhsuk-heading-m">Submit your details</h2>
+        <p>By submitting your details you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+
+        <input type="submit" class="nhsuk-button identity-button" value="Submit">
+        </input>
+      </form>
+
+
+
+    </div>
+  </div>
+{% endblock %}

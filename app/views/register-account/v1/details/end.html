@@ -10,7 +10,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
-{% set PROTOTYPEURL = "add-a-role/v1" %}
+{% set PROTOTYPEURL = "register-account/v1" %}
 {% set forwardService = "<service name>" %}
 
   {% if data['role'] %}
@@ -52,7 +52,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
         <span class="nhsuk-caption-l nhsuk-caption--bottom">Reference number: {{ refNo }}</span>
       </h1>
 
-      <p>We've received your request for the {{ role }} role to be added to your NHS identity.</p>
+      <p>We've received your request for an NHS identity to use {{ forwardService }}.</p>
 
       <p>We have sent you a copy of these details to your email.</p>
 
