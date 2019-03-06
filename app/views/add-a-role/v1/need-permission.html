@@ -2,7 +2,7 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set role = "<role>" %}
+{% set role = "Consultant (R0050)" %}
 {% set contentTitle = "Sorry, you are not able to use this service as " + role %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
@@ -12,7 +12,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set forwardService = "<service name>" %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
-{% extends 'layouts/layout-nhs-identity.html' %}
+{% extends 'layouts/layout-service.html' %}
 
 <!-- Set the page title inside this block -->
 {% block pageTitle %}
@@ -31,7 +31,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
       <p>To use {{ forwardService }}, you'll need to ask for the {{ role }} role to be added to your NHS identity.</p>
 
       <form action="/{{ PROTOTYPEURL }}/get-a-new-role" method="get">
-        <input type="submit" class="nhsuk-button identity-button" value="Ask for new role">
+        <input type="submit" class="nhsuk-button" value="Ask for new role">
         </input>
       </form>
 

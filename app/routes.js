@@ -124,5 +124,30 @@ router.post('/add-a-role/v1/new-org/confirm-org', function (req, res) {
   }
 });
 
+router.post('/add-a-role/v1/service-role', function (req, res) {
+  let answer = req.body.inServiceSelect;
+
+  if (answer === '1') {
+    res.redirect('/add-a-role/v1/need-permission')
+  } else {
+    res.redirect('/add-a-role/v1/get-a-new-role')
+  }
+});
+
+
+//////
+///  use a service
+/////
+
+router.post('/use-a-service/v1/success', function (req, res) {
+  let answer = req.body.inServiceSelect;
+
+  if (answer === '1') {
+    res.redirect('/use-a-service/v1/end')
+  } else {
+    res.redirect('/add-a-role/v1/get-a-new-role')
+  }
+});
+
 
 module.exports = router;
