@@ -5,13 +5,14 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set refNo = "A338BHE" %}
 {% set daysWait = "3" %}
 {% set contactSupport = "support@example.com" %}
-{% set contentTitle = "Request complete" %}
+{% set forwardService = "Clinical application" %}
+{% set contentTitle = "We've received your request for an NHS identity to use " + forwardService %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
 {% set PROTOTYPEURL = "register-account/v1" %}
-{% set forwardService = "<service name>" %}
+
 
   {% if data['role'] %}
     {% set role = data['role'] %}
@@ -51,8 +52,6 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
         {{ contentTitle }}
         <span class="nhsuk-caption-l nhsuk-caption--bottom">Reference number: {{ refNo }}</span>
       </h1>
-
-      <p>We've received your request for an NHS identity to use {{ forwardService }}.</p>
 
       <p>We have sent you a copy of these details to your email.</p>
 

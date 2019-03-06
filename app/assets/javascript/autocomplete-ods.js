@@ -1,6 +1,6 @@
 accessibleAutocomplete.enhanceSelectElement({
   showNoOptionsFound: true,
   defaultValue: '',
-  showAllValues: true,
+  // showAllValues: true,
   selectElement: document.querySelector('#ODS')
 })

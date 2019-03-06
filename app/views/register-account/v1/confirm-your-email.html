@@ -8,7 +8,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
 {% set PROTOTYPEURL = "register-account/v1" %}
-{% set forwardService = "<service name>" %}
+{% set forwardService = "Clinical application" %}
 {% if data['email'] %}
   {% set email = data['email'] %}
 {% else %}
@@ -33,18 +33,26 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 
       <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
 
-      <p>To register for {{ forwardService }} you need to confirm your email address.</p>
       <p>We've sent an email to {{ email }}.</p>
+
+      <p>To register for {{ forwardService }} you need to confirm your email address.</p>
+
       <p>To confirm your email, click the link inside the email we just sent.</p>
 
-      <p>Once you've confirmed your email address you can finish registering for {{ forwardService }}.</p>
+      {{ details({
+        "text": "What to do if you have not received your email",
+        "HTML": "<p>If you haven't received an email in 5 minutes you should:</p>
+        <ol>
+          <li>check your email account's spam or junk folder</li>
+          <li><a href='/" + PROTOTYPEURL + "/resend-confirm-your-email'>Get a new confirmation email sent</a></li>
+        </ol>"
+      }) }}
 
-      <h2 class="nhsuk-heading-m">What to do if you have not received your email</h2>
-      <p>If you haven't received an email in 5 minutes you should:</p>
-      <ol>
-        <li>check your email account's spam or junk folder</li>
-        <li><a href="/{{ PROTOTYPEURL}}/resend-confirm-your-email">Get a new confirmation email sent</a></li>
-      </ol>
+      <h2 class="nhsuk-heading-m">What happens next</h2>
+
+      <p>Once you've confirmed your email address you can finish registering for your NHS identity.</p>
+
+
 
     </div>
   </div>
