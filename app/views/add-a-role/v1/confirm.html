@@ -4,8 +4,27 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
 {% set refNo = "A338BHE" %}
 {% set daysWait = "3" %}
+{% if data['role'] %}
+  {% set role = data['role'] %}
+{% else %}
+  {% set role = "Consultant (R0050)" %}
+{% endif %}
+
+{% if data['email'] %}
+  {% set email = data['email'] %}
+{% else %}
+  {% set email = "test@example.com" %}
+{% endif %}
+
+{% if data['ODS'] %}
+  {% set org = data['ODS'] %}
+{% else %}
+  {% set org = "Sheffield Teaching Hospitals NHS Foundation Trust" %}
+{% endif %}
 {% set contactSupport = "support@example.com" %}
-{% set contentTitle = "Request complete" %}
+{% set contentTitle %}
+  We've received your request for the {{ role }} role to be added to your NHS identity
+{% endset %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
@@ -13,23 +32,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
 {% set PROTOTYPEURL = "add-a-role/v1" %}
 {% set forwardService = "Clinical application" %}
 
-  {% if data['role'] %}
-    {% set role = data['role'] %}
-  {% else %}
-    {% set role = "Consultant (R0050)" %}
-  {% endif %}
 
-  {% if data['email'] %}
-    {% set email = data['email'] %}
-  {% else %}
-    {% set email = "test@example.com" %}
-  {% endif %}
-
-  {% if data['ODS'] %}
-    {% set org = data['ODS'] %}
-  {% else %}
-    {% set org = "Sheffield Teaching Hospitals NHS Foundation Trust" %}
-  {% endif %}
 
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
@@ -48,11 +51,9 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">
+        <span class="nhsuk-caption-l nhsuk-caption--top">Reference number: {{ refNo }}</span>
         {{ contentTitle }}
-        <span class="nhsuk-caption-l nhsuk-caption--bottom">Reference number: {{ refNo }}</span>
       </h1>
-
-      <p>We've received your request for the {{ role }} role to be added to your NHS identity.</p>
 
       <p>We have sent you a copy of these details to your email.</p>
 

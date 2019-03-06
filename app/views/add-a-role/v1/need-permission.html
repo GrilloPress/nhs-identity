@@ -2,7 +2,8 @@
 ADDING CUSTOM CSS
 Add your custom CSS/Sass to /app/assets/sass/main.scss
 -->
-{% set role = "Consultant (R0050)" %}
+{% set role = "Social Worker (R1330)" %}
+{% set otherRole = "Approved Social Worker (R1340)" %}
 {% set contentTitle = "Sorry, you are not able to use this service as " + role %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
@@ -28,7 +29,7 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
     <div class="nhsuk-grid-column-two-thirds">
 
       <h1 class="nhsuk-heading-l">{{ contentTitle }}</h1>
-      <p>To use {{ forwardService }}, you'll need to ask for the {{ role }} role to be added to your NHS identity.</p>
+      <p>To use {{ forwardService }}, you'll need to ask for the {{ otherRole }} role to be added to your NHS identity.</p>
 
       <form action="/{{ PROTOTYPEURL }}/get-a-new-role" method="get">
         <input type="submit" class="nhsuk-button" value="Ask for new role">
