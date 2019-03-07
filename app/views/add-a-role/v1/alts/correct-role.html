@@ -1,19 +1,14 @@
-<!--
-ADDING CUSTOM CSS
-Add your custom CSS/Sass to /app/assets/sass/main.scss
--->
-{% if data['ODS'] %}
-  {% set org = data['ODS'] %}
-{% else %}
-  {% set org = "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST (RHQ)" %}
-{% endif %}
-{% set contentTitle = "Which organisation do you want to add the new role to?" %}
+{% set contentTitle = "Do you want to add the Privacy Officer (R0001) role to your NHS identity?" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
 {# set width = "800" #}
 {% set PROTOTYPEURL = "add-a-role/v1" %}
-
+{% set forwardService = "Clinical application" %}
+{% block pageScripts %}
+  <script type="text/javascript" src="/js/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript" src="/js/autocomplete-roles.js"></script>
+{% endblock %}
 <!-- Extends the layout from /app/views/layouts/layout.html -->
 {% extends 'layouts/layout-nhs-identity.html' %}
 
@@ -30,11 +25,11 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <form action="#" method="post">
+      <form action="#" method="get">
 
         {{ radios({
-          "idPrefix": "anotherOrgID",
-          "name": "anotherOrg",
+          "idPrefix": "role",
+          "name": "role",
           "fieldset": {
             "legend": {
               "text": contentTitle,
@@ -45,15 +40,11 @@ Add your custom CSS/Sass to /app/assets/sass/main.scss
           "items": [
             {
               "value": "1",
-              "text": org
-            },
-            {
-              "value": "2",
-              "text": "NHS Digital"
+              "text": "Yes"
             },
             {
               "value": "3",
-              "text": "I need to add another organisation"
+              "text": "No, I need to add another role"
             }
           ]
         }) }}
