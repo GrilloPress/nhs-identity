@@ -137,3 +137,10 @@
 .autocomplete__input:focus {
       border: 2px solid $nhsuk-form-border-color;
       }
+
+
+.autocomplete__dropdown-arrow-down {
+  @include mq($until: tablet) {
+    display: none;
+  }
+}
