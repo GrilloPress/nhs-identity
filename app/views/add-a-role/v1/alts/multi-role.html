@@ -1,4 +1,4 @@
-{% set contentTitle = "Do you want to add the Catalogue Buyer role to your NHS identity?" %}
+{% set contentTitle = "Which roles do you want to add to your NHS identity?" %}
 {% set title = contentTitle + " - " + serviceName %}
 {% set serviceName = "NHS identity" %}
 {% set nhsIdentity = "true" %}
@@ -27,7 +27,7 @@
 
       <form action="#" method="get">
 
-        {{ radios({
+        {{ checkboxes({
           "idPrefix": "role",
           "name": "role",
           "fieldset": {
@@ -37,14 +37,21 @@
               "classes": "nhsuk-label--l"
             }
           },
+          "hint": {
+            "text": "Select all that apply"
+          },
           "items": [
             {
               "value": "1",
-              "text": "Yes"
+              "text": "Privacy Officer (R0001)"
+            },
+            {
+              "value": "2",
+              "text": "Information Officer Access Role (R8012)"
             },
             {
               "value": "3",
-              "text": "No, I need to add another role"
+              "text": "Health Records Manager Access Role (R8013)"
             }
           ]
         }) }}
